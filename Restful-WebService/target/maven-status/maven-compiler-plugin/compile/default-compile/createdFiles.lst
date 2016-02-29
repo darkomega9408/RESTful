@@ -1,0 +1,8 @@
+vn\khmt\restful\HelloService.class
+vn\khmt\restful\User.class
+org\netbeans\rest\application\config\ApplicationConfig.class
+vn\khmt\restful\Message.class
+vn\khmt\restful\ConnectToSQL.class
+vn\khmt\restful\HelloService$1.class
+vn\khmt\restful\AuthenticationService.class
+vn\khmt\restful\CORSFilter.class
