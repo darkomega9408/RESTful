@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="js/jquery-2.2.1.min.js" type="text/javascript"></script>
+        <script src="js/bootstrap.min.js" type="text/javascript"></script>
+        <link rel="stylesheet" href="css/bootstrap.min.css"/>
+        <link rel="shortcut icon" href="">
+    </head>
+    <body>
+        <div class="container">
+            <h1>User List</h1>
+            <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12">
+                <div class="panel-group">
+
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $.ajax({
+                    type: "GET",
+                    url: "http://localhost:8080/restful-java/user/all",
+                    xhrFields: {
+                        withCredentials: true
+                    },
+                    beforeSend: function (request) {
+                        request.setRequestHeader("Authorization", "Basic " + btoa("admin:admin"));
+                    }
+
+                }).done(function (data) {
+                    data.forEach(function (user, i) {
+                        $(".panel-group").append('<div class="panel panel-default">\n\
+                        <div class="panel-heading">' + user.name + '</div>\n\
+                        <div class="panel-body">\n\
+                            <div class="row">\n\
+                                <div class="col-md-6 col-xs-6 col-sm-6">\n\
+                                    <h5>' + user.email + '</h5>\n\
+                                </div>\n\
+                                <div class="col-md-6 col-xs-6 col-sm-6">\n\
+                                    <button type="button" class="btn btn-info pull-right" data-toggle="collapse" data-target="#user' + i + '">Details</button>\n\
+                                </div>\n\
+                            </div>\n\
+                            <div class="row">\n\
+                                <div id="user' + i + '" class="collapse col-md-12">\n\
+                                    <h5>Username: ' + user.username + '</h5>\n\
+                                    <h5>Password: ' + user.password + '</h5>\n\
+                                    <h5>Status: ' + user.status + '</h5>\n\
+                                </div>\n\
+                            </div>\n\
+                        </div>\n\
+                    </div>');
+                    });
+
+
+                }).error(function (data) {
+                    alert("Error");
+                });
+
+            });
+        </script>
+
+    </body>
+</html>
